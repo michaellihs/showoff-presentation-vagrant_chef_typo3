@@ -1,15 +1,13 @@
-# GO LEAN
+# Chef, Vagrant and TYPO3
 
-## oder: wie wir weniger Müll produzieren
-
-Dieses Repository beinhaltet eine [showoff](https://github.com/puppetlabs/showoff) Präsentation über Lean-Management Methoden und deren Anwendbarkeit im Bereich der Softwareentwicklung.
+This repository contains a [showoff](https://github.com/puppetlabs/showoff) presentation about Vagrant, Chef and a little bit about TYPO3.
 
 ## Installation
 
-Einfach `bundle install` ausführen.
+Run `bundle install`.
 
-Wenn ihr keinen Bundler installiert habt, zuvor `gem install bundler` ausführen.
+If you don't have bundler, run `gem install bundler` before.
 
 ## Präsentation starten
 
-Zuerst `showoff server` ausführen, danach ist die Präsentation unter [http://localhost:9090](http://localhost:9090) im Browser verfügbar.
+Start Showoff with `showoff server` in the root directory. Afterwards open [http://localhost:9090](http://localhost:9090) in your browser.
