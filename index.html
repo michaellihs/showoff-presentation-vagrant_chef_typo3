@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Chef, Vagrant and TYPO3</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+
+  <link rel="stylesheet" href=".//css/reset.css" type="text/css"/>
+
+
+  <link type="text/css" href=".//css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href=".//css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href=".//css/sh_style.css" rel="stylesheet" />
+  <link type="text/css" href=".//css/tipsy.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href=".//css/showoff.css" type="text/css"/>
+
+  <script type="text/javascript" src=".//js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src=".//js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src=".//js/jquery-print.js"></script>
+  <script type="text/javascript" src=".//js/jquery.batchImageLoad.js"></script>
+  <script type="text/javascript" src=".//js/jquery.parsequery.min.js"></script>
+  <script type="text/javascript" src=".//js/jquery.doubletap-0.1.js"></script>
+  <script type="text/javascript" src=".//js/jquery.tipsy.js"></script>
+
+  <script type="text/javascript" src=".//js/fg.menu.js"></script>
+  <script type="text/javascript" src=".//js/showoff.js"></script>
+  <script type="text/javascript" src=".//js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src=".//js/sh_main.min.js"></script>
+  <script type="text/javascript" src=".//js/core.js"></script>
+  <script type="text/javascript" src=".//js/showoffcore.js"></script>
+  <script type="text/javascript" src=".//js/coffee-script.js"></script>
+
+      <script type="text/javascript" src=".//js/sh_lang/sh_ruby.min.js"></script>
+      <script type="text/javascript" src=".//js/sh_lang/sh_javascript.min.js"></script>
+      <script type="text/javascript" src=".//js/sh_lang/sh_sh.min.js"></script>
+
+    <link rel="stylesheet" href=".//file/custom.css" type="text/css"/>
+
+
+  <script type="text/javascript">
+    $(function(){
+      setupPreso(false, './');
+    });
+
+    editUrl  = "";
+  </script>
+
+</head>
+
+<body>
+
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
+<a tabindex="1" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="stylemenu"><span class="ui-icon ui-icon-triangle-1-s"></span>styles</a>
+<div id="stylepicker" class="hidden"></div>
+
+
+<div id="help">
+  <table>
+    <tr><td class="key">z, ?</td><td>toggle help (this)</td></tr>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">shift-space, &larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">b</td><td>blank screen</td></tr>
+    <tr><td class="key">d</td><td>toggle debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c, t</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">g</td><td>toggle follow</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">n</td><td>toggle notes</td></tr>
+    <tr><td class="key">p</td><td>run preshow</td></tr>
+    <tr><td class="key">P</td><td>toggle pause</td></tr>
+    <tr><td class="key">s</td><td>choose style</td></tr>
+  </table>
+</div>
+
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
+
+<div id="preso"><center>loading presentation...</center></div>
+<div id="footer">
+  <span id="followMode"></span>
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+  <span id="slideFilename"></span>
+  <img id="disconnected" src=".//css/disconnected.png" />
+</div>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div id="01_title_title" class="slide title_slide" data-transition="none">
+<div class="content title_slide" ref="01_title/title">
+<h1>Chef, Vagrant &amp; TYPO3</h1>
+
+<h2>Michael Lihs</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="02_about_me_about_me" class="slide " data-transition="none">
+<div class="content " ref="02_about_me/about_me">
+<h1>lihsmi.ch</h1>
+
+<h1>@kaktusmimi</h1>
+</div>
+</div>
+<div id="03_agenda_agenda" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="03_agenda/agenda">
+<h1>Agenda</h1>
+
+<ul>
+<li>Motivation</li>
+<li>Virtualization in a Nutshell</li>
+<li>Introducing Vagrant &amp; Chef</li>
+<li>TYPO3 in a Box</li>
+<li>Let's go live!</li>
+</ul>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="04_motivation/motivation/1">
+<h1>Motivation</h1>
+
+<h2>Why should I care about all this stuff?</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide " data-transition="none">
+<div class="content " ref="04_motivation/motivation/2">
+<h1>Setup &amp; Changeover Time</h1>
+
+<h2>How long does it take you to set up a new TYPO3 project?</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide " data-transition="none">
+<div class="content " ref="04_motivation/motivation/3">
+<h1>Collaboration</h1>
+
+<h2>How do you share projects with colleagues?</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide " data-transition="none">
+<div class="content " ref="04_motivation/motivation/4">
+<h1>"But it worked on my machine!"</h1>
+
+<h2>Phrases we don't want to hear...</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide " data-transition="none">
+<div class="content " ref="04_motivation/motivation/5">
+<h1>DevOps</h1>
+
+<h2>"You build it - you run it!"</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide " data-transition="none">
+<div class="content " ref="04_motivation/motivation/6">
+<h1>Continuous Delivery</h1>
+
+<h2>It starts in your development environments</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="04_motivation/motivation/7">
+<h1>We want Development Environments to be</h1>
+
+<ul>
+<li>Repeatable</li>
+<li>Versionable</li>
+<li>Testable</li>
+<li>Portable</li>
+</ul>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_virtualization_nutshell/virtualization_nutshell/1">
+<h1>Virtualization</h1>
+
+<h2>In a Nutshell</h2>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/2">
+<h1>No Virtualization</h1>
+
+<h2>LAMP, WAMP, MAMP</h2>
+
+<ul>
+<li>install apache, mysql, php "on your machine"</li>
+<li>your development machine "acts as a webserver"</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/3">
+<h1>PROs</h1>
+
+<ul>
+<li>fairly easy to set up</li>
+<li>fast</li>
+<li>no overhead (diskspace, ram, cpu)</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/4">
+<h1>CONs</h1>
+
+<ul>
+<li>interferes with your OS</li>
+<li>no production-like environment</li>
+<li>depends on packages for your OS</li>
+<li>big damage if you break it</li>
+<li>not easily disposable</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/5">
+<h1>Heavy Weight Virtualization</h1>
+
+<h2>VMWare Fusion, VirtualBox, Parallels</h2>
+
+<ul>
+<li>full hardware virtualization</li>
+<li>complete isolation of instances</li>
+<li>each vm requires full OS</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/6">
+<h1>PROs</h1>
+
+<ul>
+<li>well established tools</li>
+<li>production-like environment</li>
+<li>multiple package / OS versions</li>
+<li>every project has its own environment</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/7">
+<h1>CONs</h1>
+
+<ul>
+<li>cpu, ram and diskspace overhead</li>
+<li>slow(er)</li>
+<li>not-so-easy setup</li>
+<li>filesharing is biggest (?) problem</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/8">
+<h1>Lightweight Virtualization</h1>
+
+<h2>Docker, Jails, Rocket</h2>
+
+<ul>
+<li>container = isolated process</li>
+<li>share kernel with host</li>
+<li>no device emulation</li>
+<li>resource restrictions (ram, cpu, disk, networking)</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/9">
+<h1>PROs</h1>
+
+<ul>
+<li>little to no overhead</li>
+<li>starts and stops within seconds</li>
+<li>containerization</li>
+<li>fast file shares</li>
+<li>new tools every day</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/10">
+<h1>CONs</h1>
+
+<ul>
+<li>new tools every day</li>
+<li>very little production usage</li>
+<li>(Docker) only available on some Linux distributions</li>
+<li>legacy applications "don't fit in"</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_virtualization_nutshell/virtualization_nutshell/11">
+<h1>We'll talk about heavy weight virtualization here!</h1>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_virtualization_nutshell/virtualization_nutshell/12">
+<h1>Through Virtualization Infrastructure becomes</h1>
+
+<ul>
+<li>manageable through software</li>
+<li>disposable</li>
+<li>hardware independent</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_virtualization_nutshell/virtualization_nutshell/13">
+<h1>VM Management can still be cumbersome...</h1>
+
+<ul>
+<li>networking</li>
+<li>virtual devices &amp; shares</li>
+<li>bootstraping VMs</li>
+<li>distributing VMs</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_virtualization_nutshell/virtualization_nutshell/14">
+<h1>Here comes Vagrant...</h1>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/01_vagrant/1">
+<h1>Vagrant</h1>
+
+<h2>A Remote Control for VirtualBox</h2>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/01_vagrant/2">
+<h1>Some Examples</h1>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/3">
+<h1>create vm with Centos 6.5</h1>
+
+<pre><code>$ vagrant init box-cutter/centos65
+$ vagrant up
+</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/4">
+<h1>ssh into a running vm</h1>
+
+<pre><code>$ vagrant ssh
+</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/5">
+<h1>stop a running vm</h1>
+
+<pre><code>$ vagrant halt
+</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/6">
+<h1>delete a vm</h1>
+
+<pre><code>$ vagrant destroy
+</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/01_vagrant/7">
+<h1>Vagrant Terminology</h1>
+
+<ul>
+<li>Host and Guest</li>
+<li>Boxes</li>
+<li>Providers</li>
+<li>Provisioners</li>
+<li>Shared / Synced Folders</li>
+<li>Vagrantfile</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/01_vagrant/8">
+<h1>Vagrant Boxes</h1>
+
+<h2>VM images with "Some Extras"</h2>
+
+<ul>
+<li>operating system (e.g. Ubuntu)</li>
+<li>a sudo user <code>vagrant</code>
+</li>
+<li>an ssh server running</li>
+<li>a known ssh key for the vagrant user</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/01_vagrant/9">
+<h1>Host &amp; Guest</h1>
+
+<ul>
+<li>
+<strong>Host</strong> - the machine that starts Vagrant</li>
+<li>
+<strong>Guest</strong> - the virtual machine started by the host</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/01_vagrant/10">
+<h1>Provisioner</h1>
+
+<h2>Strategy for HOW to provisioning your box</h2>
+
+<ul>
+<li>Shell-Provisioner</li>
+<li>Chef-Provisioner</li>
+<li>Puppet-Provisioner</li>
+<li>Ansible-Provisioner</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/01_vagrant/11">
+<h1>Provider</h1>
+
+<h2>Strategy for WHERE to provision your box</h2>
+
+<ul>
+<li>VirtualBox (default)</li>
+<li>VMWare Fusion ($$$)</li>
+<li>Amazon AWS</li>
+<li>KVM</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/01_vagrant/12">
+<h1>Vagrantfile</h1>
+
+<ul>
+<li>Configures a Vagrant environment
+
+<ul>
+<li>which box to use</li>
+<li>networking</li>
+<li>shared / synced folders</li>
+<li>provisioning</li>
+</ul>
+</li>
+<li>It's Ruby - PANIC</li>
+<li>It's Ruby DSL - so DON'T PANIC</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/13">
+<pre class="sh_ruby"><code># A most basic Vagrantfile
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "box-cutter/centos65"
+
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/14">
+<h1>Basic schema of a Vagrantfile</h1>
+
+<pre class="sh_ruby"><code>
+Vagrant.configure('2') do |config|
+  config.vm.define :box_name do |box_name|
+    # Box setup
+    ...
+    # VM settings
+    ...
+    # synced folder(s)
+    ...
+    # Network settings
+    ...
+    # SSH settings
+    ...
+    # Provisioning settings
+    ...
+  end
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/15">
+<h1>Box setup</h1>
+
+<pre class="sh_ruby"><code>Vagrant.configure('2') do |config|
+  config.vm.define :box_name do |box_name|
+
+    box_name.vm.box = 'ubuntu/precise64'
+    box_name.vm.box_url = \
+      "http://.../precise64.box"
+
+    ...
+
+  end
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/16">
+<h1>VM settings</h1>
+
+<pre class="sh_ruby"><code>box_name.vm.provider 'virtualbox' do |v|
+  v.name = 'NAME_FOR_YOUR_VM'
+  v.customize [
+                'modifyvm', :id,
+                '--memory', 2048,
+                '--cpus', 1
+              ]
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/17">
+<h1>Synced folders</h1>
+
+<pre class="sh_ruby"><code>box_name.vm.synced_folder \
+  '.', '/vagrant', \
+   id: 'vagrant-root', disabled: true
+
+box_name.vm.synced_folder \
+  '.', '/var/vagrant/, \
+  :nfs =&gt; true, :nfs_version =&gt; 3</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/18">
+<h1>Network settings</h1>
+
+<pre class="sh_ruby"><code>box_name.vm.hostname = 'boxname.vagrant.dev'
+box_name.vm.network :private_network, \
+  ip: '10.20.30.50', netmask: '255.255.255.0'</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/19">
+<h1>SSH settings</h1>
+
+<pre class="sh_ruby"><code>box_name.ssh.forward_agent = true</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/20">
+<h1>Provisioning settings</h1>
+
+<pre class="sh_ruby"><code>box_name.vm.provision :shell do |s|
+  s.inline = 'sudo /usr/bin/chef-client ' \
+   '-z -o recipe[env_application_dev] ' \
+   '-c /var/vagrant/solo.rb'
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/21">
+<h1>Anatomy of a Vagrant project</h1>
+
+<h2>Provisioned by Chef</h2>
+
+<pre><code>
+.
+├── cookbooks
+├── Gemfile
+├── README.md
+├── Rakefile
+├── Vagrantfile
+└── solo.rb</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/02_chef/1">
+<h1>Chef</h1>
+
+<h2>IT Automation Framework</h2>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/2">
+<h1>Chef Characteristics</h1>
+
+<ul>
+<li>Ruby as scripting language</li>
+<li>Sequential order of execution</li>
+<li>Client server or standalone</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/02_chef/3">
+<h1>Chef Terminology</h1>
+
+<ul>
+<li>Nodes</li>
+<li>Cookbooks, Recipes, Resources</li>
+<li>Attributes</li>
+<li>Data Bags</li>
+<li>Chef Client &amp; Chef Server</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/4">
+<h1>Nodes</h1>
+
+<ul>
+<li>A machine managed by Chef</li>
+<li>can be a physical machine, a virtual machine, a cloud instance or a container</li>
+<li>is converged into desired state</li>
+<li>requires a Chef client</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/5">
+<h1>Cookbooks</h1>
+
+<ul>
+<li>Define your <strong>tasks</strong>
+
+<ul>
+<li>e.g. install a package, create user</li>
+</ul>
+</li>
+<li>organized in <strong>recipes</strong>
+</li>
+<li>using <strong>resources</strong> to describe desired state</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/6">
+<h1>Idempotency</h1>
+
+<ul>
+<li>Basic idea <code>f(f(x)) == f(x)</code>
+</li>
+<li>Executing cookbooks more than once does not change desired state</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/7">
+<h1>Attributes</h1>
+
+<ul>
+<li>Information about your node
+
+<ul>
+<li>e.g. hostname, user name, log directory</li>
+</ul>
+</li>
+<li>
+<strong>defaults</strong> are defined in cookbooks</li>
+<li>
+<strong>composed</strong> according to priority levels</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/8">
+<h1>Data Bags</h1>
+
+<ul>
+<li>Shared <strong>global data</strong>
+</li>
+<li>information that needs to be shared between more than one node</li>
+<li>formatted in <strong>JSON</strong>
+</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/9">
+<h1>Chef Client</h1>
+
+<ul>
+<li>Brings nodes to desired configuration</li>
+<li>
+<code>chef-client</code> for client/server mode</li>
+<li>
+<code>chef-solo</code> for standalone mode</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/10">
+<h1>Chef Server</h1>
+
+<ul>
+<li>Storage for Cookbooks, Data Bags, Nodes ...</li>
+<li>Used to ship with a GUI
+
+<ul>
+<li>now only free up to 25 nodes</li>
+</ul>
+</li>
+<li>Provides REST API</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/02_chef/11">
+<h1>Cookbook Implementation</h1>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/12">
+<h1>Anatomy of a Cookbook</h1>
+
+<pre><code>cookbooks/cookbook_name
+├── attributes
+│   └── default.rb
+├── recipes
+│   └── default.rb
+├── README.md
+└── metadata.rb</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/13">
+<h1>metadata.rb</h1>
+
+<pre class="sh_ruby"><code>name             'cookbook_name'
+maintainer       'Great Developer'
+maintainer_email 'developer@maii.com'
+license          'all_rights'
+description      'Does great stuff'
+long_description 'Longer description'
+version          '0.1.1'
+
+supports 'ubuntu'</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/14">
+<h1>Recipe Example</h1>
+
+<pre class="sh_ruby"><code># Install a few packages
+package 'vim' do
+  action :install
+end
+
+package 'ntp' do
+  action :install
+end
+
+package 'git' do
+  action :install
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/02_chef/15">
+<h1>Wait... we have Ruby?!?</h1>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/16">
+<h1>Refactored Recipe</h1>
+
+<pre class="sh_ruby"><code>['vim', 'ntp', 'git'].each do |pkg|
+  package pkg do
+    action :install
+  end
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/17">
+<h1>Attributes</h1>
+
+<pre class="sh_ruby"><code>node.default['default_packages'] = \
+  ['vim', 'ntp', 'git']</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/18">
+<h1>Re-Refactored Recipe</h1>
+
+<pre class="sh_ruby"><code>node['default_packages'].each do |pkg|
+  package pkg
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/19">
+<h1>Data Bags</h1>
+
+<pre><code>databags          # data bags dir
+└─ users          # data bag name
+    ├─ ry21.json  # data bag item
+    ├─ ry32.json  # data bag item
+    └─ ry96.json  # data bag item</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/20">
+<h1>Data Bag Items</h1>
+
+<pre class="sh_javascript"><code>{
+  "id":      "ry32",
+  "name":    "Michael Lihs",
+  "home":    "/home/ry32",
+  "ssh_keys: ["key_1", "key_2"]
+}</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/21">
+<h1>Using Data Bags in Recipes</h1>
+
+<pre class="sh_ruby"><code>data_bag('users').each do |username|
+  user_config = \
+    data_bag_item('users', username)
+
+  user_account user_config['id'] do
+    home         '/home/' + user_config['id']
+    create_group true
+    ssh_keygen   false
+    action       :create
+    ssh_keys     user_config['ssh_keys']
+  end
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/22">
+<h1>Running Chef Client</h1>
+
+<ul>
+<li>
+<p>Chef Client needs to know, where</p>
+
+<ul>
+<li>to find cookbooks</li>
+<li>to find databags</li>
+<li>to store cache files</li>
+</ul>
+</li>
+<li><p>Therefore we need a configuration file</p></li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/23">
+<h1>solo.rb - Chef Client Configuration</h1>
+
+<pre class="sh_ruby"><code>current_dir = File.dirname(__FILE__)
+
+file_cache_path "/var/chef-cache"
+cookbook_path ["#{current_dir}/cookbooks"]
+data_bag_path "#{current_dir}/databags"
+ssl_verify_mode :verify_none</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/24">
+<h1>Running Chef Client</h1>
+
+<pre><code>sudo /usr/bin/chef-client -z  \
+  -o recipe[cookbook::recipe] \
+  -c /var/vagrant/solo.rb</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/25">
+<h1>Debugging Chef Client Runs</h1>
+
+<pre><code>sudo /usr/bin/chef-client -z  \
+  -o recipe[cookbook::recipe] \
+  -c /var/vagrant/solo.rb \
+  -l debug</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/02_chef/26">
+<h1>Community Cookbooks &amp; Berkshelf</h1>
+
+<ul>
+<li>Many community cookbooks available</li>
+<li>Using submodules is a bad idea</li>
+<li>Berkshelf is (more than) a dependency manager</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/27">
+<h1>Cookbook Dependencies in metadata.rb</h1>
+
+<pre class="sh_ruby"><code># ... other stuff ...
+
+depends 'cookbook_name'</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/28">
+<h1>The Berksfile</h1>
+
+<pre><code>cookbooks/cookbook_name
+├── attributes
+│   └── default.rb
+├── recipes
+│   └── default.rb
+├── Berksfile
+├── README.md
+└── metadata.rb</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/29">
+<h1>Configuring Berkshelf</h1>
+
+<pre class="sh_ruby"><code>source "https://supermarket.chef.io"
+
+metadata</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/30">
+<h1>Vendoring Dependencies</h1>
+
+<pre class="sh_sh"><code>berks vendor \
+  -b cookbooks/cookbook_name/Berksfile \
+  berks-cookbooks</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/31">
+<h1>Adapting solo.rb</h1>
+
+<pre class="sh_ruby"><code># ... other stuff ...
+
+cookbook_path ["/var/vagrant/berks-cookbooks"]</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/32">
+<h1>Testing Chef Cookbooks</h1>
+
+<ul>
+<li>Code Linting using Foodcritic</li>
+<li>Unit Tests using ChefSpec</li>
+<li>Acceptance Tests using ServerSpec</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/33">
+<h1>ChefSpec Test</h1>
+
+<pre class="sh_ruby"><code>describe 'app_chef_node::default' do
+  let(:chef_run) do
+   ChefSpec::SoloRunner \
+     .converge(described_recipe)
+  end
+
+  it 'creates directory `/etc/chef`' do
+    expect(chef_run) \
+      .to create_directory('/etc/chef')
+  end
+
+  it 'creates file `/etc/chef/client.rb`' do
+    expect(chef_run) \
+      .to create_file('/etc/chef/client.rb') \
+      .with(mode: 0644)
+  end
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/34">
+<h1>ServerSpec Test</h1>
+
+<pre class="sh_ruby"><code>describe service('mysql-server') do
+ it { should be_enabled }
+ it { should be_running }
+end
+
+
+
+describe port(3306) do
+ it { should be_listening }
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/35">
+<h1>Continuous Integration<br>     with Chef</h1>
+
+<p><img src="./file/06_vagrant_chef/ci_workflow.png" height="450px"></p>
+</div>
+</div>
+<div id="07_typo3_typo3" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="07_typo3/typo3/1">
+<h1>TYPO3 in a Box</h1>
+</div>
+</div>
+<div id="07_typo3_typo3" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="07_typo3/typo3/2">
+<h1>Benefits</h1>
+
+<ul>
+<li>Different PHP versions in different boxes</li>
+<li>Manage complex setups
+
+<ul>
+<li>Solr</li>
+<li>Memcached / Redis</li>
+<li>Varnish</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="07_typo3_typo3" class="slide " data-transition="none">
+<div class="content " ref="07_typo3/typo3/3">
+<h1>A TYPO3 Vagrant Box</h1>
+
+<ul>
+<li>Basic Cookbooks
+
+<ul>
+<li>TYPO3 sources</li>
+<li>Apache / Nginx + vhosts</li>
+<li>MySQL + databases</li>
+<li>PHP</li>
+</ul>
+</li>
+<li>Advanced Cookbooks
+
+<ul>
+<li>Solr</li>
+<li>Varnish</li>
+<li>Memcached / Redis</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="07_typo3_typo3" class="slide " data-transition="none">
+<div class="content " ref="07_typo3/typo3/4">
+<h1>Find Some Inspiration</h1>
+
+<ul>
+<li><a href="https://github.com/TYPO3-cookbooks">https://github.com/TYPO3-cookbooks</a></li>
+</ul>
+</div>
+</div>
+<div id="07_typo3_typo3" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="07_typo3/typo3/5">
+<h1>Attend the <br><br>"Setting up a Vagrant based development environment"<br><br> Session on Friday</h1>
+</div>
+</div>
+<div id="08_go_live_go_live" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="08_go_live/go_live/1">
+<h1>Go Live!</h1>
+</div>
+</div>
+<div id="08_go_live_go_live" class="slide " data-transition="none">
+<div class="content " ref="08_go_live/go_live/2">
+<h1>Environments Cookbook</h1>
+
+<ul>
+<li>Manage different environments in cookbooks</li>
+<li>Follow the <a href="http://blog.vialstudios.com/the-environment-cookbook-pattern/">Environment Cookbook Pattern</a>
+</li>
+<li>Manage your production nodes with Chef (Server)
+
+<ul>
+<li>Write a production environment Cookbook</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="09_tips_and_tricks/tips_and_tricks/1">
+<h1>"PRO-Tips"</h1>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/2">
+<h1>Community Cookbooks</h1>
+
+<ul>
+<li>Different quality</li>
+<li>Use Berkshelf for dependency management</li>
+<li>Pin the version</li>
+<li>Great example: the <code>jenkins</code> cookbook</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/3">
+<h1>Multiple Boxes in one Environment</h1>
+
+<ul>
+<li>Set up a whole cluster with one Vagrantfile</li>
+<li>Examples:
+
+<ul>
+<li>Jenkins master / slave setups</li>
+<li>CoreOS / Kubernetes clusters</li>
+<li>Chef Server and Nodes</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/4">
+<h1>Examples for multi-machine Vagrantfiles</h1>
+
+<ul>
+<li><a href="https://github.com/GoogleCloudPlatform/kubernetes/blob/master/docs/getting-started-guides/vagrant.md">Kubernetes with Vagrant</a></li>
+<li><a href="http://misheska.com/blog/2014/11/25/chef-server-12/">Chef Server 12 with Vagrant</a></li>
+<li><a href="https://github.com/opscode-cookbooks/jenkins">Jenkins Cookbook</a></li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/5">
+<h1>NFS Shares</h1>
+
+<ul>
+<li>VirtualBox shared folders are slow</li>
+<li>tuning shares with NFS</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/6">
+<h1>File Caches</h1>
+
+<ul>
+<li>NFS is fast in reading</li>
+<li>it's slow in writing</li>
+<li>keep cache files in the box</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/7">
+<h1>Cookbook Documentation</h1>
+
+<ul>
+<li>
+<code>knife</code> plugin <code>cookbook doc</code>
+</li>
+<li>create your own template</li>
+<li>makes use of Rubydoc and Metadata</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/8">
+<p><img src="./file/09_tips_and_tricks/cookbook_readme.png" height="700px"></p>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/9">
+<h1>Rake Tasks</h1>
+
+<ul>
+<li>Use Rake for repeated tasks</li>
+<li>upload cookbooks</li>
+<li>create documentation</li>
+<li>run tests</li>
+<li>linting</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="09_tips_and_tricks/tips_and_tricks/10">
+<pre><code>$ rake -T
+
+rake cookbook:chefspec[name]
+    # Runs ChefSpec tests
+rake cookbook:foodcritic[name]
+    # Runs Foodcritic linting
+rake cookbook:readme[name]
+    # Generate README.md files
+rake cookbook:test[name]
+    # Runs knife cookbook test
+rake cookbook:upload[name]
+    # Upload cookbook(s)</code></pre>
+</div>
+</div>
+<div id="10_resources_resources" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="10_resources/resources/1">
+<h1>READ!Me</h1>
+</div>
+</div>
+<div id="10_resources_resources" class="slide " data-transition="none">
+<div class="content " ref="10_resources/resources/2">
+<h1>Vagrant Cookbook</h1>
+
+<p><img src="./file/10_resources/vagrant_cookbook.png" height="500px"></p>
+</div>
+</div>
+<div id="10_resources_resources" class="slide " data-transition="none">
+<div class="content " ref="10_resources/resources/3">
+<h1>Learning Chef</h1>
+
+<p><img src="./file/10_resources/learn_chef.png" height="500px"></p>
+</div>
+</div>
+<div id="10_resources_resources" class="slide " data-transition="none">
+<div class="content " ref="10_resources/resources/4">
+<h1>Test-Driven Infrastructure <br>with Chef</h1>
+
+<p><img src="./file/10_resources/test_driven_chef.png" height="500px"></p>
+</div>
+</div>
+<div id="10_resources_resources" class="slide " data-transition="none">
+<div class="content " ref="10_resources/resources/5">
+<h1>Customizing Chef</h1>
+
+<p><img src="./file/10_resources/customizing_chef.png" height="500px"></p>
+</div>
+</div>
+
+</div>
+<div id="pauseScreen">
+  Paused
+</div>
+
+</body>
+</html>
