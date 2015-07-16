@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Go LEAN oder wie wir weniger Müll produzieren</title>
+  <title>Chef, Vagrant and TYPO3</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
 
@@ -33,6 +33,9 @@
   <script type="text/javascript" src=".//js/showoffcore.js"></script>
   <script type="text/javascript" src=".//js/coffee-script.js"></script>
 
+      <script type="text/javascript" src=".//js/sh_lang/sh_ruby.min.js"></script>
+      <script type="text/javascript" src=".//js/sh_lang/sh_javascript.min.js"></script>
+      <script type="text/javascript" src=".//js/sh_lang/sh_sh.min.js"></script>
 
     <link rel="stylesheet" href=".//file/custom.css" type="text/css"/>
 
@@ -90,665 +93,1175 @@
 </div>
 
 <div id="slides" class="offscreen" style="display:none;">
-<div id="title_title" class="slide " data-transition="none">
-<div class="content " ref="title/title">
-<h1>GO LEAN</h1>
+<div id="01_title_title" class="slide title_slide" data-transition="none">
+<div class="content title_slide" ref="01_title/title">
+<h1>Chef, Vagrant &amp; TYPO3</h1>
 
-<h2>oder</h2>
-
-<h2>wie wir weniger Müll produzieren</h2>
+<h2>Michael Lihs</h2>
 
 <div class="notes">
 
 </div>
 </div>
 </div>
-<div id="about_me_about_me" class="slide " data-transition="none">
-<div class="content " ref="about_me/about_me">
-<h1>@kaktusmimi</h1>
-
+<div id="02_about_me_about_me" class="slide " data-transition="none">
+<div class="content " ref="02_about_me/about_me">
 <h1>lihsmi.ch</h1>
+
+<h1>@kaktusmimi</h1>
 </div>
 </div>
-<div id="agenda_agenda" class="slide " data-transition="none">
-<div class="content " ref="agenda/agenda">
+<div id="03_agenda_agenda" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="03_agenda/agenda">
 <h1>Agenda</h1>
 
 <ul>
-<li>LEAN - WTF?!?</li>
-<li>Was hat das alles mit uns zu tun?</li>
-<li>Der LEAN Methodenkoffer</li>
-<li>Wie anfangen?</li>
-<li>Literatur</li>
+<li>Motivation</li>
+<li>Virtualization in a Nutshell</li>
+<li>Introducing Vagrant &amp; Chef</li>
+<li>TYPO3 in a Box</li>
+<li>Let's go live!</li>
 </ul>
 </div>
 </div>
-<div id="lean_wtf_lean_wtf" class="slide " data-transition="none">
-<div class="content " ref="lean_wtf/lean_wtf/1">
-<h1>Lean Management</h1>
+<div id="04_motivation_motivation" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="04_motivation/motivation/1">
+<h1>Motivation</h1>
+
+<h2>Why should I care about all this stuff?</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide " data-transition="none">
+<div class="content " ref="04_motivation/motivation/2">
+<h1>Setup &amp; Changeover Time</h1>
+
+<h2>How long does it take you to set up a new TYPO3 project?</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide " data-transition="none">
+<div class="content " ref="04_motivation/motivation/3">
+<h1>Collaboration</h1>
+
+<h2>How do you share projects with colleagues?</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide " data-transition="none">
+<div class="content " ref="04_motivation/motivation/4">
+<h1>"But it worked on my machine!"</h1>
+
+<h2>Phrases we don't want to hear...</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide " data-transition="none">
+<div class="content " ref="04_motivation/motivation/5">
+<h1>DevOps</h1>
+
+<h2>"You build it - you run it!"</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide " data-transition="none">
+<div class="content " ref="04_motivation/motivation/6">
+<h1>Continuous Delivery</h1>
+
+<h2>It starts in your development environments</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="04_motivation_motivation" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="04_motivation/motivation/7">
+<h1>We want Development Environments to be</h1>
 
 <ul>
-<li>Der Begriff Lean Management ... bezeichnet die Gesamtheit der Denkprinzipien, Methoden und Verfahrensweisen zur effizienten Gestaltung der gesamten Wertschöpfungskette industrieller Güter
-<br>
-<br><a href="http://de.wikipedia.org/wiki/Lean_Management">Wikipedia</a>
-</li>
-</ul>
-</div>
-</div>
-<div id="lean_wtf_lean_wtf" class="slide " data-transition="none">
-<div class="content " ref="lean_wtf/lean_wtf/2">
-<h1>WTF?!?</h1>
-</div>
-</div>
-<div id="lean_wtf_lean_wtf" class="slide " data-transition="none">
-<div class="content " ref="lean_wtf/lean_wtf/3">
-<h1>Lean Management -<br> Zweiter Versuch</h1>
-
-<ul>
-<li>Management-Ansatz aus der Fertigungsindustrie (urspr. Toyota)</li>
-<li>Kernidee:
-
-<ul>
-<li>Maximale Werte für Kunden schaffen</li>
-<li>dabei gleichzeitig 'Waste' minimieren</li>
-</ul>
-</li>
+<li>Repeatable</li>
+<li>Versionable</li>
+<li>Testable</li>
+<li>Portable</li>
 </ul>
 
 <div class="notes">
 
+</div>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_virtualization_nutshell/virtualization_nutshell/1">
+<h1>Virtualization</h1>
+
+<h2>In a Nutshell</h2>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/2">
+<h1>No Virtualization</h1>
+
+<h2>LAMP, WAMP, MAMP</h2>
+
 <ul>
-<li>erklären, wo LEAN herkommt</li>
-<li>Kernidee erläutern</li>
+<li>install apache, mysql, php "on your machine"</li>
+<li>your development machine "acts as a webserver"</li>
 </ul>
-
 </div>
 </div>
-</div>
-<div id="lean_wtf_lean_wtf" class="slide " data-transition="none">
-<div class="content " ref="lean_wtf/lean_wtf/4">
-<h1>Softwareentwicklung <br>≠<br>Autoindustrie ???</h1>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/3">
+<h1>PROs</h1>
 
 <ul>
-<li>Beide Branchen:
+<li>fairly easy to set up</li>
+<li>fast</li>
+<li>no overhead (diskspace, ram, cpu)</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/4">
+<h1>CONs</h1>
+
+<ul>
+<li>interferes with your OS</li>
+<li>no production-like environment</li>
+<li>depends on packages for your OS</li>
+<li>big damage if you break it</li>
+<li>not easily disposable</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/5">
+<h1>Heavy Weight Virtualization</h1>
+
+<h2>VMWare Fusion, VirtualBox, Parallels</h2>
+
+<ul>
+<li>full hardware virtualization</li>
+<li>complete isolation of instances</li>
+<li>each vm requires full OS</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/6">
+<h1>PROs</h1>
+
+<ul>
+<li>well established tools</li>
+<li>production-like environment</li>
+<li>multiple package / OS versions</li>
+<li>every project has its own environment</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/7">
+<h1>CONs</h1>
+
+<ul>
+<li>cpu, ram and diskspace overhead</li>
+<li>slow(er)</li>
+<li>not-so-easy setup</li>
+<li>filesharing is biggest (?) problem</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/8">
+<h1>Lightweight Virtualization</h1>
+
+<h2>Docker, Jails, Rocket</h2>
+
+<ul>
+<li>container = isolated process</li>
+<li>share kernel with host</li>
+<li>no device emulation</li>
+<li>resource restrictions (ram, cpu, disk, networking)</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/9">
+<h1>PROs</h1>
+
+<ul>
+<li>little to no overhead</li>
+<li>starts and stops within seconds</li>
+<li>containerization</li>
+<li>fast file shares</li>
+<li>new tools every day</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide " data-transition="none">
+<div class="content " ref="05_virtualization_nutshell/virtualization_nutshell/10">
+<h1>CONs</h1>
+
+<ul>
+<li>new tools every day</li>
+<li>very little production usage</li>
+<li>(Docker) only available on some Linux distributions</li>
+<li>legacy applications "don't fit in"</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_virtualization_nutshell/virtualization_nutshell/11">
+<h1>We'll talk about heavy weight virtualization here!</h1>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_virtualization_nutshell/virtualization_nutshell/12">
+<h1>Through Virtualization Infrastructure becomes</h1>
+
+<ul>
+<li>manageable through software</li>
+<li>disposable</li>
+<li>hardware independent</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_virtualization_nutshell/virtualization_nutshell/13">
+<h1>VM Management can still be cumbersome...</h1>
+
+<ul>
+<li>networking</li>
+<li>virtual devices &amp; shares</li>
+<li>bootstraping VMs</li>
+<li>distributing VMs</li>
+</ul>
+</div>
+</div>
+<div id="05_virtualization_nutshell_virtualization_nutshell" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="05_virtualization_nutshell/virtualization_nutshell/14">
+<h1>Here comes Vagrant...</h1>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/01_vagrant/1">
+<h1>Vagrant</h1>
+
+<h2>A Remote Control for VirtualBox</h2>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/01_vagrant/2">
+<h1>Some Examples</h1>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/3">
+<h1>create vm with Centos 6.5</h1>
+
+<pre><code>$ vagrant init box-cutter/centos65
+$ vagrant up
+</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/4">
+<h1>ssh into a running vm</h1>
+
+<pre><code>$ vagrant ssh
+</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/5">
+<h1>stop a running vm</h1>
+
+<pre><code>$ vagrant halt
+</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/6">
+<h1>delete a vm</h1>
+
+<pre><code>$ vagrant destroy
+</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/01_vagrant/7">
+<h1>Vagrant Terminology</h1>
+
+<ul>
+<li>Host and Guest</li>
+<li>Boxes</li>
+<li>Providers</li>
+<li>Provisioners</li>
+<li>Shared / Synced Folders</li>
+<li>Vagrantfile</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/01_vagrant/8">
+<h1>Vagrant Boxes</h1>
+
+<h2>VM images with "Some Extras"</h2>
+
+<ul>
+<li>operating system (e.g. Ubuntu)</li>
+<li>a sudo user <code>vagrant</code>
+</li>
+<li>an ssh server running</li>
+<li>a known ssh key for the vagrant user</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/01_vagrant/9">
+<h1>Host &amp; Guest</h1>
 
 <ul>
 <li>
-<strong>Werte</strong> für Kunden schaffen</li>
+<strong>Host</strong> - the machine that starts Vagrant</li>
 <li>
-<strong>Waste</strong> minimieren</li>
+<strong>Guest</strong> - the virtual machine started by the host</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/01_vagrant/10">
+<h1>Provisioner</h1>
+
+<h2>Strategy for HOW to provisioning your box</h2>
+
+<ul>
+<li>Shell-Provisioner</li>
+<li>Chef-Provisioner</li>
+<li>Puppet-Provisioner</li>
+<li>Ansible-Provisioner</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/01_vagrant/11">
+<h1>Provider</h1>
+
+<h2>Strategy for WHERE to provision your box</h2>
+
+<ul>
+<li>VirtualBox (default)</li>
+<li>VMWare Fusion ($$$)</li>
+<li>Amazon AWS</li>
+<li>KVM</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/01_vagrant/12">
+<h1>Vagrantfile</h1>
+
+<ul>
+<li>Configures a Vagrant environment
+
+<ul>
+<li>which box to use</li>
+<li>networking</li>
+<li>shared / synced folders</li>
+<li>provisioning</li>
+</ul>
+</li>
+<li>It's Ruby - PANIC</li>
+<li>It's Ruby DSL - so DON'T PANIC</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/13">
+<pre class="sh_ruby"><code># A most basic Vagrantfile
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "box-cutter/centos65"
+
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/14">
+<h1>Basic schema of a Vagrantfile</h1>
+
+<pre class="sh_ruby"><code>
+Vagrant.configure('2') do |config|
+  config.vm.define :box_name do |box_name|
+    # Box setup
+    ...
+    # VM settings
+    ...
+    # synced folder(s)
+    ...
+    # Network settings
+    ...
+    # SSH settings
+    ...
+    # Provisioning settings
+    ...
+  end
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/15">
+<h1>Box setup</h1>
+
+<pre class="sh_ruby"><code>Vagrant.configure('2') do |config|
+  config.vm.define :box_name do |box_name|
+
+    box_name.vm.box = 'ubuntu/precise64'
+    box_name.vm.box_url = \
+      "http://.../precise64.box"
+
+    ...
+
+  end
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/16">
+<h1>VM settings</h1>
+
+<pre class="sh_ruby"><code>box_name.vm.provider 'virtualbox' do |v|
+  v.name = 'NAME_FOR_YOUR_VM'
+  v.customize [
+                'modifyvm', :id,
+                '--memory', 2048,
+                '--cpus', 1
+              ]
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/17">
+<h1>Synced folders</h1>
+
+<pre class="sh_ruby"><code>box_name.vm.synced_folder \
+  '.', '/vagrant', \
+   id: 'vagrant-root', disabled: true
+
+box_name.vm.synced_folder \
+  '.', '/var/vagrant/, \
+  :nfs =&gt; true, :nfs_version =&gt; 3</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/18">
+<h1>Network settings</h1>
+
+<pre class="sh_ruby"><code>box_name.vm.hostname = 'boxname.vagrant.dev'
+box_name.vm.network :private_network, \
+  ip: '10.20.30.50', netmask: '255.255.255.0'</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/19">
+<h1>SSH settings</h1>
+
+<pre class="sh_ruby"><code>box_name.ssh.forward_agent = true</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/20">
+<h1>Provisioning settings</h1>
+
+<pre class="sh_ruby"><code>box_name.vm.provision :shell do |s|
+  s.inline = 'sudo /usr/bin/chef-client ' \
+   '-z -o recipe[env_application_dev] ' \
+   '-c /var/vagrant/solo.rb'
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_01_vagrant" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/01_vagrant/21">
+<h1>Anatomy of a Vagrant project</h1>
+
+<h2>Provisioned by Chef</h2>
+
+<pre><code>
+.
+├── cookbooks
+├── Gemfile
+├── README.md
+├── Rakefile
+├── Vagrantfile
+└── solo.rb</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/02_chef/1">
+<h1>Chef</h1>
+
+<h2>IT Automation Framework</h2>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/2">
+<h1>Chef Characteristics</h1>
+
+<ul>
+<li>Ruby as scripting language</li>
+<li>Sequential order of execution</li>
+<li>Client server or standalone</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/02_chef/3">
+<h1>Chef Terminology</h1>
+
+<ul>
+<li>Nodes</li>
+<li>Cookbooks, Recipes, Resources</li>
+<li>Attributes</li>
+<li>Data Bags</li>
+<li>Chef Client &amp; Chef Server</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/4">
+<h1>Nodes</h1>
+
+<ul>
+<li>A machine managed by Chef</li>
+<li>can be a physical machine, a virtual machine, a cloud instance or a container</li>
+<li>is converged into desired state</li>
+<li>requires a Chef client</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/5">
+<h1>Cookbooks</h1>
+
+<ul>
+<li>Define your <strong>tasks</strong>
+
+<ul>
+<li>e.g. install a package, create user</li>
+</ul>
+</li>
+<li>organized in <strong>recipes</strong>
+</li>
+<li>using <strong>resources</strong> to describe desired state</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/6">
+<h1>Idempotency</h1>
+
+<ul>
+<li>Basic idea <code>f(f(x)) == f(x)</code>
+</li>
+<li>Executing cookbooks more than once does not change desired state</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/7">
+<h1>Attributes</h1>
+
+<ul>
+<li>Information about your node
+
+<ul>
+<li>e.g. hostname, user name, log directory</li>
+</ul>
+</li>
 <li>
-<strong>Innovation</strong> sichert Fortbestand</li>
-</ul>
-</li>
-<li>Fließband == Continuous Delivery Pipeline</li>
-</ul>
-
-<div class="notes">
-
-<ul>
-<li>Zunächst einmal scheinen die Auto-Industrie und die Software-Branche nicht sehr viel gemeinsam zu haben</li>
-<li>Auf den zweiten Blick gibt es aber viele Parallelen, sowohl in der Motivation als auch in den Methoden</li>
-<li>Ziel dieses Vortrages ist die</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div id="lean_wtf_lean_wtf" class="slide " data-transition="none">
-<div class="content " ref="lean_wtf/lean_wtf/5">
-<h1>LEAN Startup</h1>
-
-<ul>
-<li>LEAN Ansatz bei Startups sehr populär
-
-<ul>
-<li>Produktentwicklung</li>
-<li>Innovationsmanagement</li>
-</ul>
-</li>
-<li>Übertragbar auf "etablierte" Unternehmen?</li>
-</ul>
-
-<div class="notes">
-
-<ul>
-<li>LEAN Methoden haben sich im Startup-Bereich etabliert</li>
-<li>Bei Startups geht es oft darum, ein Produkt zu entwickeln
-
-<ul>
-<li>steht zunächst im Widerspruch zur "Projekt-Entwicklung" in unserem Umfeld</li>
-<li>betrachtet man aber Projekte als Produkte, tun sich plötzlich interessante Parallelen auf</li>
-</ul>
-</li>
-<li>Bleibt also die Frage, ob und wie sich Methoden aus dem Startup-Umfeld auf "etablierte" Unternehmen übertragen lassen</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/1">
-<h1>Ein kleiner <br> LEAN Methoden-Koffer</h1>
-
-<div class="notes">
-
-<ul>
-<li>Die folgenden Slides zeigen ein paar Methoden aus dem Lean Management</li>
-<li>Vergleiche: Patterns aus der Software-Entwicklung</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/2">
-<h1>LEAN Methoden <br>a.k.a. Patterns</h1>
-
-<ul class="non-bullet">
-    <li>
-<strong class="rounded red">P</strong> Problemstellung</li>
-    <li>
-<strong class="rounded blue">T</strong> Tool</li>
-    <li>
-<strong class="rounded green">B</strong> Beispiel(e)</li>
-</ul>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/3">
-<h1>
-<strong class="red">P</strong> Umgang mit <br>Unsicherheit &amp; Risiko</h1>
-
-<ul>
-<li>Unser Umfeld ist geprägt von
-
-<ul>
-<li>(zu) vielen Optionen</li>
-<li>ständig neuen Technologien</li>
-<li>hoher Unsicherheit</li>
-</ul>
-</li>
-<li>Wir müssen in diesem Umfeld effizient sein
-
-<ul>
-<li>Wettbewerbsfähigkeit == Innovation?</li>
-</ul>
-</li>
-</ul>
-
-<div class="notes">
-
-<ul>
-<li>Klären, wie der Innovationsbegriff zu verstehen ist</li>
-<li>Verbesserung ggf. ≠ Innovation
-
-<ul>
-<li>Weil es das, was man am Ende macht ggf. schon gegeben hat, man es nur noch nicht eingesetzt hat</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/4">
-<h1>
-<strong class="blue">T</strong> Build-Measure-Learn <br> Feedback-Loop  (BML)</h1>
-
-<p><img src="./file/lean_methods/build_measure_learn_2.png" height="500px"></p>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/5">
-<h1>
-<strong class="blue">T</strong> Build-Measure-Learn (BML) <br> Feedback-Loop</h1>
-
-<ul>
-<li><p>Arbeiten in kleinen, iterativen Zyklen</p></li>
+<strong>defaults</strong> are defined in cookbooks</li>
 <li>
-<p>Ziele:</p>
+<strong>composed</strong> according to priority levels</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/8">
+<h1>Data Bags</h1>
 
 <ul>
-<li>Lernen durch Feedback</li>
-<li>Validiertes Lernen, basierend auf Daten</li>
-<li>Waste minimieren</li>
-<li>Taktzahl erhöhen</li>
-</ul>
+<li>Shared <strong>global data</strong>
+</li>
+<li>information that needs to be shared between more than one node</li>
+<li>formatted in <strong>JSON</strong>
 </li>
 </ul>
-
-<div class="notes">
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/9">
+<h1>Chef Client</h1>
 
 <ul>
-<li>Startups: Wieviele Durchläufe, bis Geld aufgebraucht</li>
-<li>Entwicklung: Wieviele Durchläufe, bis Budget aufgebraucht</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/6">
-<h1>
-<strong class="green">B</strong> Continuous Integration Pipeline</h1>
-
-<p><img src="./file/lean_methods/ci_feedback_loops.png" height="450px"></p>
-
-<div class="notes">
-
-<ul>
-<li>Dieses Bild zeigt diverse Feedback-Loops in CI Pipeline</li>
-<li>Entwickler baut etwas</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/7">
-<h1>Wie kann <br>BML Feedback-Loop <br> umgesetzt werden?</h1>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/8">
-<h1>
-<strong class="red">P</strong> Wie erreicht man schnelle Feedbackzyklen?</h1>
-
-<ul>
-<li>Wie kann Feedback automatisiert werden?</li>
-<li>Wie bekommt man spezifisches Feedback?</li>
-<li>Wie schafft man mehr Durchläufe?</li>
-</ul>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/9">
-<h1>
-<strong class="blue">T</strong> Small Batches</h1>
-
-<ul>
-<li>Kanban / SCRUM
-
-<ul>
-<li>WIP Limits</li>
-<li>Kein Queueing</li>
-<li>Dinge zu Ende bringen</li>
-</ul>
-</li>
-</ul>
-
-<div class="notes">
-
-<ul>
-<li>CI / CD ist das Tool, um mit small Batches arbeiten zu können
-
-<ul>
-<li>Möglichkeit der "kostenfreien" Auslieferung kleiner Iterationen</li>
-<li>Zahlreiche Möglichkeiten für Feedback (Tests, Code-Review, Kunden-Abnahmen)</li>
-</ul>
-</li>
-<li>Einbeziehung von Kunden
-
-<ul>
-<li>Abnahme und Preview für Kunden</li>
-<li>"Halbfertiges" ausliefern (siehe MVP)</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/10">
-<h1>
-<strong class="green">B</strong> Durchlaufzeiten am SCRUM Board</h1>
-
-<ul>
-<li><p>SCRUM Board warnt vor Queueing</p></li>
-<li><p>Nur done ist done</p></li>
-</ul>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/11">
-<h1>
-<strong class="green">B</strong> Größe der Backlog-Items</h1>
-
-<ul>
-<li><p>Kleine Tasks sind (meistens) effizienter</p></li>
-<li><p>Große Tasks verhindern schnelles Feedback</p></li>
-<li><p>Große Tasks zeigen oft hohes Risiko</p></li>
-<li><p>Risikominimierung durch Aufsplittung</p></li>
-</ul>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/12">
-<h1>
-<strong class="red">P</strong> Goldene Wasserhähne</h1>
-
-<ul>
-<li>"Über-Perfektion"</li>
-<li>"Übers-Ziel-Hinausschießen"</li>
-<li>"Dinge beim zweiten Mal richtig machen"</li>
-</ul>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/13">
-<h1>
-<strong class="blue">T</strong> Minimum Viable Product</h1>
-
-<ul>
-<li>Im Zweifelsfall: Dinge weglassen</li>
-<li>Schnelle Prototypen
-
-<ul>
-<li>Not-Invented-Here vermeiden</li>
-<li>Fertige Tools nutzen</li>
-</ul>
-</li>
-<li>"Minimal akzeptiertes Feature"
-
-<ul>
-<li>Wann ist ein Ticket umgesetzt?</li>
-</ul>
-</li>
-</ul>
-
-<div class="notes">
-
-<ul>
-<li>Beim Minimum Viable Product geht es darum, so schnell wie möglich rauszufinden, ob unser Produkt / Feature jemanden interessiert</li>
-<li>Dafür muss es gegebenenfalls noch nicht "perfekt aussehen" oder "performant" sein oder alle Sicherheitskriterien erfüllen</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/14">
-<h1>
-<strong class="green">B</strong> "Das neue Suchformular"</h1>
-
-<ul>
-<li><p>Zu implementieren: Suche auf Webseite</p></li>
+<li>Brings nodes to desired configuration</li>
 <li>
-<p>"Nice-to-have": Suche hat Auto-Complete</p>
+<code>chef-client</code> for client/server mode</li>
+<li>
+<code>chef-solo</code> for standalone mode</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/10">
+<h1>Chef Server</h1>
 
 <ul>
-<li>Verzögert Auslieferung</li>
-<li>Läuft Gefahr, nicht gewollt zu sein</li>
+<li>Storage for Cookbooks, Data Bags, Nodes ...</li>
+<li>Used to ship with a GUI
+
+<ul>
+<li>now only free up to 25 nodes</li>
 </ul>
 </li>
+<li>Provides REST API</li>
 </ul>
 </div>
 </div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/15">
-<h1>
-<strong class="red">P</strong> Ursachen beheben statt Symptome bekämpfen</h1>
+<div id="06_vagrant_chef_02_chef" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/02_chef/11">
+<h1>Cookbook Implementation</h1>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/12">
+<h1>Anatomy of a Cookbook</h1>
 
-<ul>
-<li><p>Gleiche Fehler tauchen immer wieder auf</p></li>
-<li><p>Dinge gehen nur manchmal</p></li>
-</ul>
+<pre><code>cookbooks/cookbook_name
+├── attributes
+│   └── default.rb
+├── recipes
+│   └── default.rb
+├── README.md
+└── metadata.rb</code></pre>
 </div>
 </div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/16">
-<h1>
-<strong class="blue">T</strong> The 5 WHYs</h1>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/13">
+<h1>metadata.rb</h1>
 
-<ul>
-<li><p>5 Mal "Warum?" fragen</p></li>
-<li>
-<p>"Root Cause Analysis"</p>
+<pre class="sh_ruby"><code>name             'cookbook_name'
+maintainer       'Great Developer'
+maintainer_email 'developer@maii.com'
+license          'all_rights'
+description      'Does great stuff'
+long_description 'Longer description'
+version          '0.1.1'
 
-<ul>
-<li>Ursache des Problems finden</li>
-</ul>
-</li>
-</ul>
+supports 'ubuntu'</code></pre>
 </div>
 </div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/17">
-<h1>
-<strong class="green">B</strong> Kaputtes SSO</h1>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/14">
+<h1>Recipe Example</h1>
 
-<ul>
-<li>Problem: SSO geht nicht</li>
-<li>1. Warum: SSO Server liefert Schrott</li>
-<li>2. Warum: Paket auf SSO Server fehlt</li>
-<li>3. Warum: Server neu aufgesetzt</li>
-<li>4. Warum: Spezifikation an Ops unklar</li>
-<li>5. Warum: Dev und Ops Komm.-Problem</li>
-</ul>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/18">
-<h1>
-<strong class="red">P</strong> Bauchgefühl-entscheidungen</h1>
+<pre class="sh_ruby"><code># Install a few packages
+package 'vim' do
+  action :install
+end
 
-<ul>
-<li><p>"Ich bin der festen Überzeugung, dass..."</p></li>
-<li><p>"Meiner Meinung nach sollten wir..."</p></li>
-<li><p>"Das liegt vermutlich an..."</p></li>
-</ul>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/19">
-<h1>
-<strong class="blue">T</strong> Hypothesen-getriebene Experimente</h1>
+package 'ntp' do
+  action :install
+end
 
-<ul>
-<li><p>Experimente bestätigen / wiederlegen These</p></li>
-<li><p>Möglichst falisfizierbare Hypothesen</p></li>
-<li><p>Nutzung von Daten zur Bestätigung / Widerlegung von Hypothesen</p></li>
-</ul>
+package 'git' do
+  action :install
+end</code></pre>
 </div>
 </div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/20">
-<h1>
-<strong class="green">B</strong> Menü macht Seite lahm</h1>
+<div id="06_vagrant_chef_02_chef" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/02_chef/15">
+<h1>Wait... we have Ruby?!?</h1>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/16">
+<h1>Refactored Recipe</h1>
 
-<ul>
-<li>Beobachtung: 3000 DB Requests pro <br>Seitenaufruf für Menü-Rendering</li>
-<li>Hypothese: Macht Seitenaufbau lahm</li>
-<li>Experiment: Neues Caching
+<pre class="sh_ruby"><code>['vim', 'ntp', 'git'].each do |pkg|
+  package pkg do
+    action :install
+  end
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/17">
+<h1>Attributes</h1>
 
-<ul>
-<li>Performancetest vorher</li>
-<li>Performancetest nachher</li>
-<li>Tests mit realen Daten durchführen</li>
-</ul>
-</li>
-<li>Ergebnis: 50% Beschleunigung</li>
-</ul>
+<pre class="sh_ruby"><code>node.default['default_packages'] = \
+  ['vim', 'ntp', 'git']</code></pre>
 </div>
 </div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/21">
-<h1>
-<strong class="red">P</strong> Wie messe ich den Erfolg von Maßnahmen</h1>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/18">
+<h1>Re-Refactored Recipe</h1>
 
-<ul>
-<li><p>Wie finde ich die richtigen Metriken?</p></li>
-<li><p>Wie interpretiere ich meine Metriken?</p></li>
-<li><p>Wie messe ich Verbesserungen?</p></li>
-<li><p>Welche Metriken helfen bei Entscheidungsfindung?</p></li>
-</ul>
+<pre class="sh_ruby"><code>node['default_packages'].each do |pkg|
+  package pkg
+end</code></pre>
 </div>
 </div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/22">
-<h1>
-<strong class="blue">T</strong> Actionable Metrics</h1>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/19">
+<h1>Data Bags</h1>
 
-<ul>
-<li><p>Metriken, aus denen sich Entscheidungen ableiten lassen: <strong>Actionable Metrics</strong></p></li>
-<li><p>Metriken, die uns nicht bei Entscheidungsfindung helfen: <strong>Vanity Metrics</strong></p></li>
-</ul>
+<pre><code>databags          # data bags dir
+└─ users          # data bag name
+    ├─ ry21.json  # data bag item
+    ├─ ry32.json  # data bag item
+    └─ ry96.json  # data bag item</code></pre>
 </div>
 </div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/23">
-<h1>
-<strong class="green">B</strong> Actionable Metrics vs. Vanity Metrics</h1>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/20">
+<h1>Data Bag Items</h1>
 
-<ul>
-<li><p>Konversionsrate vs. Seitenaufrufe</p></li>
-<li><p>Aktivierungen vs. Downloads</p></li>
-<li><p>Durchlaufzeit vs. Story Points</p></li>
-<li><p>Fakturierte Stunden vs. Arbeitszeit</p></li>
-</ul>
+<pre class="sh_javascript"><code>{
+  "id":      "ry32",
+  "name":    "Michael Lihs",
+  "home":    "/home/ry32",
+  "ssh_keys: ["key_1", "key_2"]
+}</code></pre>
 </div>
 </div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/24">
-<h1>
-<strong class="green">B</strong> Pirate Metrics AARRR</h1>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/21">
+<h1>Using Data Bags in Recipes</h1>
 
-<ul class="non-bullet">
-<li>
-<strong class="rounded">A</strong>cquisition – # Besucher</li>
-<li>
-<strong class="rounded">A</strong>ctivation – # glücklicher Besucher</li>
-<li>
-<strong class="rounded">R</strong>etention – # wiederkehrender Besucher</li>
-<li>
-<strong class="rounded">R</strong>evenue – # bezahlender Besucher</li>
-<li>
-<strong class="rounded">R</strong>eferral – # empfehlender Besucher</li>
-</ul>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/25">
-<h1>
-<strong class="red">P</strong> Innovation und Lernen transparent machen</h1>
+<pre class="sh_ruby"><code>data_bag('users').each do |username|
+  user_config = \
+    data_bag_item('users', username)
 
-<ul>
-<li><p>Wie kann Innovation und Lernen "dokumentiert" werden?</p></li>
-<li><p>Wie kann ich darüber buchhalten?</p></li>
-</ul>
+  user_account user_config['id'] do
+    home         '/home/' + user_config['id']
+    create_group true
+    ssh_keygen   false
+    action       :create
+    ssh_keys     user_config['ssh_keys']
+  end
+end</code></pre>
 </div>
 </div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/26">
-<h1>
-<strong class="blue">T</strong> Innovation Radar</h1>
-
-<ul>
-<li>Grafische Darstellung
-
-<ul>
-<li>Phasen der Adaption</li>
-<li>Bewegung visualisieren</li>
-</ul>
-</li>
-<li>WIP Limits vereinbaren</li>
-</ul>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/27">
-<h1>
-<strong class="green">B</strong> Beispiel für Innovation Radar</h1>
-
-<table>
-<tr>
-<td><img src="./file/lean_methods/technology_radar.jpg" height="400px"></td>
-<td><img src="./file/lean_methods/technology_radar_2.jpg" height="400px"></td>
-</tr>
-</table>
-</div>
-</div>
-<div id="lean_methods_lean_methods" class="slide " data-transition="none">
-<div class="content " ref="lean_methods/lean_methods/28">
-<h1>Methoden-Übersicht</h1>
-
-<ul>
-<li>Build-Measure-Learn Loop</li>
-<li>MVP &amp; Small Batches</li>
-<li>5 WHYs</li>
-<li>Hypothesen-getriebene Experimente</li>
-<li>Actionable Metrics</li>
-<li>Innovation Radar</li>
-</ul>
-</div>
-</div>
-<div id="next_steps_next_steps" class="slide " data-transition="none">
-<div class="content " ref="next_steps/next_steps">
-<h1>Und jetzt?</h1>
-
-<h2>Adopt &amp; Apply-Measure-Learn Loop</h2>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/22">
+<h1>Running Chef Client</h1>
 
 <ul>
 <li>
-<p>Methoden ausprobieren (als Team), z.B.</p>
+<p>Chef Client needs to know, where</p>
 
 <ul>
-<li>5 WHYs eignen sich für Daily und Retro</li>
-<li>Innovations-Radar einführen</li>
-<li>Metriken überlegen</li>
+<li>to find cookbooks</li>
+<li>to find databags</li>
+<li>to store cache files</li>
 </ul>
 </li>
-<li><p>Methoden Evaluieren</p></li>
-<li><p>Methoden anpassen</p></li>
+<li><p>Therefore we need a configuration file</p></li>
 </ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/23">
+<h1>solo.rb - Chef Client Configuration</h1>
 
-<div class="notes">
+<pre class="sh_ruby"><code>current_dir = File.dirname(__FILE__)
+
+file_cache_path "/var/chef-cache"
+cookbook_path ["#{current_dir}/cookbooks"]
+data_bag_path "#{current_dir}/databags"
+ssl_verify_mode :verify_none</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/24">
+<h1>Running Chef Client</h1>
+
+<pre><code>sudo /usr/bin/chef-client -z  \
+  -o recipe[cookbook::recipe] \
+  -c /var/vagrant/solo.rb</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/25">
+<h1>Debugging Chef Client Runs</h1>
+
+<pre><code>sudo /usr/bin/chef-client -z  \
+  -o recipe[cookbook::recipe] \
+  -c /var/vagrant/solo.rb \
+  -l debug</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="06_vagrant_chef/02_chef/26">
+<h1>Community Cookbooks &amp; Berkshelf</h1>
 
 <ul>
-<li>Nach der theoretischen Vorstellung ist jetzt die Frage, wie man als Team / Firma mit LEAN Methoden starten kann</li>
-<li>Selbstrekursion: "Build -&gt; Measure -&gt; Learn" Loop wird zu "Adopt &amp; Apply -&gt; Measure -&gt; Leanr" Loop</li>
+<li>Many community cookbooks available</li>
+<li>Using submodules is a bad idea</li>
+<li>Berkshelf is (more than) a dependency manager</li>
 </ul>
-
 </div>
 </div>
-</div>
-<div id="resources_resources" class="slide new-chapter center" data-transition="none">
-<div class="content new-chapter center" ref="resources/resources/1">
-<h1>Lesenswertes</h1>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/27">
+<h1>Cookbook Dependencies in metadata.rb</h1>
 
-<p><img src="./file/resources/lean_book_book.png" width="450px"></p>
+<pre class="sh_ruby"><code># ... other stuff ...
 
-<p><a href="http://theleanstartup.com/book">The Lean Startup - Eric Ries</a></p>
-</div>
-</div>
-<div id="resources_resources" class="slide " data-transition="none">
-<div class="content " ref="resources/resources/2">
-<h1>Lesenswertes</h1>
-
-<p><img src="./file/resources/lean_enterprise.jpg" height="450px"></p>
-
-<p><a href="http://shop.oreilly.com/product/0636920030355.do">Lean Enterprise - Jez Humble</a></p>
+depends 'cookbook_name'</code></pre>
 </div>
 </div>
-<div id="resources_resources" class="slide " data-transition="none">
-<div class="content " ref="resources/resources/3">
-<h1>Lesenswertes</h1>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/28">
+<h1>The Berksfile</h1>
 
-<p><img src="./file/resources/running_lean.png" height="450px"></p>
-
-<p><a href="http://ashmaurya.com">Running Lean - Ash Maurya</a></p>
+<pre><code>cookbooks/cookbook_name
+├── attributes
+│   └── default.rb
+├── recipes
+│   └── default.rb
+├── Berksfile
+├── README.md
+└── metadata.rb</code></pre>
 </div>
 </div>
-<div id="resources_resources" class="slide " data-transition="none">
-<div class="content " ref="resources/resources/4">
-<h1>Lesenswertes</h1>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/29">
+<h1>Configuring Berkshelf</h1>
 
-<p><img src="./file/resources/lean_bites.jpg" height="450px"></p>
+<pre class="sh_ruby"><code>source "https://supermarket.chef.io"
 
-<p><a href="http://leanpub.com/lean-bites">Lean Bites - Matthias Marschall &amp; Dan Ackerson</a></p>
+metadata</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/30">
+<h1>Vendoring Dependencies</h1>
+
+<pre class="sh_sh"><code>berks vendor \
+  -b cookbooks/cookbook_name/Berksfile \
+  berks-cookbooks</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/31">
+<h1>Adapting solo.rb</h1>
+
+<pre class="sh_ruby"><code># ... other stuff ...
+
+cookbook_path ["/var/vagrant/berks-cookbooks"]</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/32">
+<h1>Testing Chef Cookbooks</h1>
+
+<ul>
+<li>Code Linting using Foodcritic</li>
+<li>Unit Tests using ChefSpec</li>
+<li>Acceptance Tests using ServerSpec</li>
+</ul>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/33">
+<h1>ChefSpec Test</h1>
+
+<pre class="sh_ruby"><code>describe 'app_chef_node::default' do
+  let(:chef_run) do
+   ChefSpec::SoloRunner \
+     .converge(described_recipe)
+  end
+
+  it 'creates directory `/etc/chef`' do
+    expect(chef_run) \
+      .to create_directory('/etc/chef')
+  end
+
+  it 'creates file `/etc/chef/client.rb`' do
+    expect(chef_run) \
+      .to create_file('/etc/chef/client.rb') \
+      .with(mode: 0644)
+  end
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="06_vagrant_chef/02_chef/34">
+<h1>ServerSpec Test</h1>
+
+<pre class="sh_ruby"><code>describe service('mysql-server') do
+ it { should be_enabled }
+ it { should be_running }
+end
+
+
+
+describe port(3306) do
+ it { should be_listening }
+end</code></pre>
+</div>
+</div>
+<div id="06_vagrant_chef_02_chef" class="slide " data-transition="none">
+<div class="content " ref="06_vagrant_chef/02_chef/35">
+<h1>Continuous Integration<br>     with Chef</h1>
+
+<p><img src="./file/06_vagrant_chef/ci_workflow.png" height="450px"></p>
+</div>
+</div>
+<div id="07_typo3_typo3" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="07_typo3/typo3/1">
+<h1>TYPO3 in a Box</h1>
+</div>
+</div>
+<div id="07_typo3_typo3" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="07_typo3/typo3/2">
+<h1>Benefits</h1>
+
+<ul>
+<li>Different PHP versions in different boxes</li>
+<li>Manage complex setups
+
+<ul>
+<li>Solr</li>
+<li>Memcached / Redis</li>
+<li>Varnish</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="07_typo3_typo3" class="slide " data-transition="none">
+<div class="content " ref="07_typo3/typo3/3">
+<h1>A TYPO3 Vagrant Box</h1>
+
+<ul>
+<li>Basic Cookbooks
+
+<ul>
+<li>TYPO3 sources</li>
+<li>Apache / Nginx + vhosts</li>
+<li>MySQL + databases</li>
+<li>PHP</li>
+</ul>
+</li>
+<li>Advanced Cookbooks
+
+<ul>
+<li>Solr</li>
+<li>Varnish</li>
+<li>Memcached / Redis</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="07_typo3_typo3" class="slide " data-transition="none">
+<div class="content " ref="07_typo3/typo3/4">
+<h1>Find Some Inspiration</h1>
+
+<ul>
+<li><a href="https://github.com/TYPO3-cookbooks">https://github.com/TYPO3-cookbooks</a></li>
+</ul>
+</div>
+</div>
+<div id="07_typo3_typo3" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="07_typo3/typo3/5">
+<h1>Attend the <br><br>"Setting up a Vagrant based development environment"<br><br> Session on Friday</h1>
+</div>
+</div>
+<div id="08_go_live_go_live" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="08_go_live/go_live/1">
+<h1>Go Live!</h1>
+</div>
+</div>
+<div id="08_go_live_go_live" class="slide " data-transition="none">
+<div class="content " ref="08_go_live/go_live/2">
+<h1>Environments Cookbook</h1>
+
+<ul>
+<li>Manage different environments in cookbooks</li>
+<li>Follow the <a href="http://blog.vialstudios.com/the-environment-cookbook-pattern/">Environment Cookbook Pattern</a>
+</li>
+<li>Manage your production nodes with Chef (Server)
+
+<ul>
+<li>Write a production environment Cookbook</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="09_tips_and_tricks/tips_and_tricks/1">
+<h1>"PRO-Tips"</h1>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/2">
+<h1>Community Cookbooks</h1>
+
+<ul>
+<li>Different quality</li>
+<li>Use Berkshelf for dependency management</li>
+<li>Pin the version</li>
+<li>Great example: the <code>jenkins</code> cookbook</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/3">
+<h1>Multiple Boxes in one Environment</h1>
+
+<ul>
+<li>Set up a whole cluster with one Vagrantfile</li>
+<li>Examples:
+
+<ul>
+<li>Jenkins master / slave setups</li>
+<li>CoreOS / Kubernetes clusters</li>
+<li>Chef Server and Nodes</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/4">
+<h1>Examples for multi-machine Vagrantfiles</h1>
+
+<ul>
+<li><a href="https://github.com/GoogleCloudPlatform/kubernetes/blob/master/docs/getting-started-guides/vagrant.md">Kubernetes with Vagrant</a></li>
+<li><a href="http://misheska.com/blog/2014/11/25/chef-server-12/">Chef Server 12 with Vagrant</a></li>
+<li><a href="https://github.com/opscode-cookbooks/jenkins">Jenkins Cookbook</a></li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/5">
+<h1>NFS Shares</h1>
+
+<ul>
+<li>VirtualBox shared folders are slow</li>
+<li>tuning shares with NFS</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/6">
+<h1>File Caches</h1>
+
+<ul>
+<li>NFS is fast in reading</li>
+<li>it's slow in writing</li>
+<li>keep cache files in the box</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/7">
+<h1>Cookbook Documentation</h1>
+
+<ul>
+<li>
+<code>knife</code> plugin <code>cookbook doc</code>
+</li>
+<li>create your own template</li>
+<li>makes use of Rubydoc and Metadata</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/8">
+<p><img src="./file/09_tips_and_tricks/cookbook_readme.png" height="700px"></p>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide " data-transition="none">
+<div class="content " ref="09_tips_and_tricks/tips_and_tricks/9">
+<h1>Rake Tasks</h1>
+
+<ul>
+<li>Use Rake for repeated tasks</li>
+<li>upload cookbooks</li>
+<li>create documentation</li>
+<li>run tests</li>
+<li>linting</li>
+</ul>
+</div>
+</div>
+<div id="09_tips_and_tricks_tips_and_tricks" class="slide code_slide" data-transition="none">
+<div class="content code_slide" ref="09_tips_and_tricks/tips_and_tricks/10">
+<pre><code>$ rake -T
+
+rake cookbook:chefspec[name]
+    # Runs ChefSpec tests
+rake cookbook:foodcritic[name]
+    # Runs Foodcritic linting
+rake cookbook:readme[name]
+    # Generate README.md files
+rake cookbook:test[name]
+    # Runs knife cookbook test
+rake cookbook:upload[name]
+    # Upload cookbook(s)</code></pre>
+</div>
+</div>
+<div id="10_resources_resources" class="slide section_slide" data-transition="none">
+<div class="content section_slide" ref="10_resources/resources/1">
+<h1>READ!Me</h1>
+</div>
+</div>
+<div id="10_resources_resources" class="slide " data-transition="none">
+<div class="content " ref="10_resources/resources/2">
+<h1>Vagrant Cookbook</h1>
+
+<p><img src="./file/10_resources/vagrant_cookbook.png" height="500px"></p>
+</div>
+</div>
+<div id="10_resources_resources" class="slide " data-transition="none">
+<div class="content " ref="10_resources/resources/3">
+<h1>Learning Chef</h1>
+
+<p><img src="./file/10_resources/learn_chef.png" height="500px"></p>
+</div>
+</div>
+<div id="10_resources_resources" class="slide " data-transition="none">
+<div class="content " ref="10_resources/resources/4">
+<h1>Test-Driven Infrastructure <br>with Chef</h1>
+
+<p><img src="./file/10_resources/test_driven_chef.png" height="500px"></p>
+</div>
+</div>
+<div id="10_resources_resources" class="slide " data-transition="none">
+<div class="content " ref="10_resources/resources/5">
+<h1>Customizing Chef</h1>
+
+<p><img src="./file/10_resources/customizing_chef.png" height="500px"></p>
 </div>
 </div>
 

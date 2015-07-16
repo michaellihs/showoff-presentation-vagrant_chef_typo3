@@ -73,3 +73,62 @@ strong.rounded.blue {
 ul.non-bullet {
     list-style: none;
 }
+
+div.title_slide {
+    background-color: #4a93cd;
+    color: white;
+}
+
+div.title_slide h1 {
+    color:white;
+    font-weight: 600;
+}
+
+div.title_slide h2 {
+    color: white;
+}
+
+div.section_slide {
+    background-color: #4a93cd;
+    color: white;
+}
+
+div.section_slide h1, div.section_slide h2, div.section_slide h3 {
+    color: white;
+}
+
+div.section_slide ul {
+    list-style: none;
+}
+
+pre.sh_sourceCode .sh_keyword {
+    color: #4848e8;
+}
+
+pre.sh_sourceCode .sh_string, pre.sh_sourceCode .sh_number {
+    color: #800080;
+    font-weight: bold;
+}
+
+pre.sh_sourceCode .sh_comment {
+    font-weight: bold;
+}
+
+div.content code {
+    background-color: #dedede;
+    font-size: 120%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+div.code_slide, div.code_slide pre.sh_sourceCode, div.code_slide code {
+    background-color: #333333;
+    color: #ccc;
+}
+
+div.content pre.sh_sourceCode code {
+    font-size: 90%;
+    background-color: transparent;
+}
