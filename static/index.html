@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Go LEAN oder wie wir weniger Müll produzieren</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+
+  <link rel="stylesheet" href=".//css/reset.css" type="text/css"/>
+
+
+  <link type="text/css" href=".//css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href=".//css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href=".//css/sh_style.css" rel="stylesheet" />
+  <link type="text/css" href=".//css/tipsy.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href=".//css/showoff.css" type="text/css"/>
+
+  <script type="text/javascript" src=".//js/jquery-1.4.2.min.js"></script>
+  <script type="text/javascript" src=".//js/jquery.cycle.all.js"></script>
+	<script type="text/javascript" src=".//js/jquery-print.js"></script>
+  <script type="text/javascript" src=".//js/jquery.batchImageLoad.js"></script>
+  <script type="text/javascript" src=".//js/jquery.parsequery.min.js"></script>
+  <script type="text/javascript" src=".//js/jquery.doubletap-0.1.js"></script>
+  <script type="text/javascript" src=".//js/jquery.tipsy.js"></script>
+
+  <script type="text/javascript" src=".//js/fg.menu.js"></script>
+  <script type="text/javascript" src=".//js/showoff.js"></script>
+  <script type="text/javascript" src=".//js/jTypeWriter.js"> </script>
+  <script type="text/javascript" src=".//js/sh_main.min.js"></script>
+  <script type="text/javascript" src=".//js/core.js"></script>
+  <script type="text/javascript" src=".//js/showoffcore.js"></script>
+  <script type="text/javascript" src=".//js/coffee-script.js"></script>
+
+
+    <link rel="stylesheet" href=".//file/custom.css" type="text/css"/>
+
+
+  <script type="text/javascript">
+    $(function(){
+      setupPreso(false, './');
+    });
+
+    editUrl  = "";
+  </script>
+
+</head>
+
+<body>
+
+<a tabindex="0" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="navmenu"><span class="ui-icon ui-icon-triangle-1-s"></span>slides</a>
+<div id="navigation" class="hidden"></div>
+<a tabindex="1" href="#search-engines" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="stylemenu"><span class="ui-icon ui-icon-triangle-1-s"></span>styles</a>
+<div id="stylepicker" class="hidden"></div>
+
+
+<div id="help">
+  <table>
+    <tr><td class="key">z, ?</td><td>toggle help (this)</td></tr>
+    <tr><td class="key">space, &rarr;</td><td>next slide</td></tr>
+    <tr><td class="key">shift-space, &larr;</td><td>previous slide</td></tr>
+    <tr><td class="key">b</td><td>blank screen</td></tr>
+    <tr><td class="key">d</td><td>toggle debug mode</td></tr>
+    <tr><td class="key">## &lt;ret&gt;</td><td>go to slide #</td></tr>
+    <tr><td class="key">c, t</td><td>table of contents (vi)</td></tr>
+    <tr><td class="key">f</td><td>toggle footer</td></tr>
+    <tr><td class="key">g</td><td>toggle follow</td></tr>
+    <tr><td class="key">r</td><td>reload slides</td></tr>
+    <tr><td class="key">n</td><td>toggle notes</td></tr>
+    <tr><td class="key">p</td><td>run preshow</td></tr>
+    <tr><td class="key">P</td><td>toggle pause</td></tr>
+    <tr><td class="key">s</td><td>choose style</td></tr>
+  </table>
+</div>
+
+<div class="buttonNav">
+  <input type="submit" onClick="prevStep();" value="prev"/>
+  <input type="submit" onClick="nextStep();" value="next"/>
+</div>
+
+<div id="preso"><center>loading presentation...</center></div>
+<div id="footer">
+  <span id="followMode"></span>
+  <span id="slideInfo"></span>
+  <span id="debugInfo"></span>
+  <span id="notesInfo"></span>
+  <span id="slideFilename"></span>
+  <img id="disconnected" src=".//css/disconnected.png" />
+</div>
+
+<div id="slides" class="offscreen" style="display:none;">
+<div id="title_title" class="slide " data-transition="none">
+<div class="content " ref="title/title">
+<h1>GO LEAN</h1>
+
+<h2>oder</h2>
+
+<h2>wie wir weniger Müll produzieren</h2>
+
+<div class="notes">
+
+</div>
+</div>
+</div>
+<div id="about_me_about_me" class="slide " data-transition="none">
+<div class="content " ref="about_me/about_me">
+<h1>@kaktusmimi</h1>
+
+<h1>lihsmi.ch</h1>
+</div>
+</div>
+<div id="agenda_agenda" class="slide " data-transition="none">
+<div class="content " ref="agenda/agenda">
+<h1>Agenda</h1>
+
+<ul>
+<li>LEAN - WTF?!?</li>
+<li>Was hat das alles mit uns zu tun?</li>
+<li>Der LEAN Methodenkoffer</li>
+<li>Wie anfangen?</li>
+<li>Literatur</li>
+</ul>
+</div>
+</div>
+<div id="lean_wtf_lean_wtf" class="slide " data-transition="none">
+<div class="content " ref="lean_wtf/lean_wtf/1">
+<h1>Lean Management</h1>
+
+<ul>
+<li>Der Begriff Lean Management ... bezeichnet die Gesamtheit der Denkprinzipien, Methoden und Verfahrensweisen zur effizienten Gestaltung der gesamten Wertschöpfungskette industrieller Güter
+<br>
+<br><a href="http://de.wikipedia.org/wiki/Lean_Management">Wikipedia</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="lean_wtf_lean_wtf" class="slide " data-transition="none">
+<div class="content " ref="lean_wtf/lean_wtf/2">
+<h1>WTF?!?</h1>
+</div>
+</div>
+<div id="lean_wtf_lean_wtf" class="slide " data-transition="none">
+<div class="content " ref="lean_wtf/lean_wtf/3">
+<h1>Lean Management -<br> Zweiter Versuch</h1>
+
+<ul>
+<li>Management-Ansatz aus der Fertigungsindustrie (urspr. Toyota)</li>
+<li>Kernidee:
+
+<ul>
+<li>Maximale Werte für Kunden schaffen</li>
+<li>dabei gleichzeitig 'Waste' minimieren</li>
+</ul>
+</li>
+</ul>
+
+<div class="notes">
+
+<ul>
+<li>erklären, wo LEAN herkommt</li>
+<li>Kernidee erläutern</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div id="lean_wtf_lean_wtf" class="slide " data-transition="none">
+<div class="content " ref="lean_wtf/lean_wtf/4">
+<h1>Softwareentwicklung <br>≠<br>Autoindustrie ???</h1>
+
+<ul>
+<li>Beide Branchen:
+
+<ul>
+<li>
+<strong>Werte</strong> für Kunden schaffen</li>
+<li>
+<strong>Waste</strong> minimieren</li>
+<li>
+<strong>Innovation</strong> sichert Fortbestand</li>
+</ul>
+</li>
+<li>Fließband == Continuous Delivery Pipeline</li>
+</ul>
+
+<div class="notes">
+
+<ul>
+<li>Zunächst einmal scheinen die Auto-Industrie und die Software-Branche nicht sehr viel gemeinsam zu haben</li>
+<li>Auf den zweiten Blick gibt es aber viele Parallelen, sowohl in der Motivation als auch in den Methoden</li>
+<li>Ziel dieses Vortrages ist die</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div id="lean_wtf_lean_wtf" class="slide " data-transition="none">
+<div class="content " ref="lean_wtf/lean_wtf/5">
+<h1>LEAN Startup</h1>
+
+<ul>
+<li>LEAN Ansatz bei Startups sehr populär
+
+<ul>
+<li>Produktentwicklung</li>
+<li>Innovationsmanagement</li>
+</ul>
+</li>
+<li>Übertragbar auf "etablierte" Unternehmen?</li>
+</ul>
+
+<div class="notes">
+
+<ul>
+<li>LEAN Methoden haben sich im Startup-Bereich etabliert</li>
+<li>Bei Startups geht es oft darum, ein Produkt zu entwickeln
+
+<ul>
+<li>steht zunächst im Widerspruch zur "Projekt-Entwicklung" in unserem Umfeld</li>
+<li>betrachtet man aber Projekte als Produkte, tun sich plötzlich interessante Parallelen auf</li>
+</ul>
+</li>
+<li>Bleibt also die Frage, ob und wie sich Methoden aus dem Startup-Umfeld auf "etablierte" Unternehmen übertragen lassen</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/1">
+<h1>Ein kleiner <br> LEAN Methoden-Koffer</h1>
+
+<div class="notes">
+
+<ul>
+<li>Die folgenden Slides zeigen ein paar Methoden aus dem Lean Management</li>
+<li>Vergleiche: Patterns aus der Software-Entwicklung</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/2">
+<h1>LEAN Methoden <br>a.k.a. Patterns</h1>
+
+<ul class="non-bullet">
+    <li>
+<strong class="rounded red">P</strong> Problemstellung</li>
+    <li>
+<strong class="rounded blue">T</strong> Tool</li>
+    <li>
+<strong class="rounded green">B</strong> Beispiel(e)</li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/3">
+<h1>
+<strong class="red">P</strong> Umgang mit <br>Unsicherheit &amp; Risiko</h1>
+
+<ul>
+<li>Unser Umfeld ist geprägt von
+
+<ul>
+<li>(zu) vielen Optionen</li>
+<li>ständig neuen Technologien</li>
+<li>hoher Unsicherheit</li>
+</ul>
+</li>
+<li>Wir müssen in diesem Umfeld effizient sein
+
+<ul>
+<li>Wettbewerbsfähigkeit == Innovation?</li>
+</ul>
+</li>
+</ul>
+
+<div class="notes">
+
+<ul>
+<li>Klären, wie der Innovationsbegriff zu verstehen ist</li>
+<li>Verbesserung ggf. ≠ Innovation
+
+<ul>
+<li>Weil es das, was man am Ende macht ggf. schon gegeben hat, man es nur noch nicht eingesetzt hat</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/4">
+<h1>
+<strong class="blue">T</strong> Build-Measure-Learn <br> Feedback-Loop  (BML)</h1>
+
+<p><img src="./file/lean_methods/build_measure_learn_2.png" height="500px"></p>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/5">
+<h1>
+<strong class="blue">T</strong> Build-Measure-Learn (BML) <br> Feedback-Loop</h1>
+
+<ul>
+<li><p>Arbeiten in kleinen, iterativen Zyklen</p></li>
+<li>
+<p>Ziele:</p>
+
+<ul>
+<li>Lernen durch Feedback</li>
+<li>Validiertes Lernen, basierend auf Daten</li>
+<li>Waste minimieren</li>
+<li>Taktzahl erhöhen</li>
+</ul>
+</li>
+</ul>
+
+<div class="notes">
+
+<ul>
+<li>Startups: Wieviele Durchläufe, bis Geld aufgebraucht</li>
+<li>Entwicklung: Wieviele Durchläufe, bis Budget aufgebraucht</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/6">
+<h1>
+<strong class="green">B</strong> Continuous Integration Pipeline</h1>
+
+<p><img src="./file/lean_methods/ci_feedback_loops.png" height="450px"></p>
+
+<div class="notes">
+
+<ul>
+<li>Dieses Bild zeigt diverse Feedback-Loops in CI Pipeline</li>
+<li>Entwickler baut etwas</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/7">
+<h1>Wie kann <br>BML Feedback-Loop <br> umgesetzt werden?</h1>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/8">
+<h1>
+<strong class="red">P</strong> Wie erreicht man schnelle Feedbackzyklen?</h1>
+
+<ul>
+<li>Wie kann Feedback automatisiert werden?</li>
+<li>Wie bekommt man spezifisches Feedback?</li>
+<li>Wie schafft man mehr Durchläufe?</li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/9">
+<h1>
+<strong class="blue">T</strong> Small Batches</h1>
+
+<ul>
+<li>Kanban / SCRUM
+
+<ul>
+<li>WIP Limits</li>
+<li>Kein Queueing</li>
+<li>Dinge zu Ende bringen</li>
+</ul>
+</li>
+</ul>
+
+<div class="notes">
+
+<ul>
+<li>CI / CD ist das Tool, um mit small Batches arbeiten zu können
+
+<ul>
+<li>Möglichkeit der "kostenfreien" Auslieferung kleiner Iterationen</li>
+<li>Zahlreiche Möglichkeiten für Feedback (Tests, Code-Review, Kunden-Abnahmen)</li>
+</ul>
+</li>
+<li>Einbeziehung von Kunden
+
+<ul>
+<li>Abnahme und Preview für Kunden</li>
+<li>"Halbfertiges" ausliefern (siehe MVP)</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/10">
+<h1>
+<strong class="green">B</strong> Durchlaufzeiten am SCRUM Board</h1>
+
+<ul>
+<li><p>SCRUM Board warnt vor Queueing</p></li>
+<li><p>Nur done ist done</p></li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/11">
+<h1>
+<strong class="green">B</strong> Größe der Backlog-Items</h1>
+
+<ul>
+<li><p>Kleine Tasks sind (meistens) effizienter</p></li>
+<li><p>Große Tasks verhindern schnelles Feedback</p></li>
+<li><p>Große Tasks zeigen oft hohes Risiko</p></li>
+<li><p>Risikominimierung durch Aufsplittung</p></li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/12">
+<h1>
+<strong class="red">P</strong> Goldene Wasserhähne</h1>
+
+<ul>
+<li>"Über-Perfektion"</li>
+<li>"Übers-Ziel-Hinausschießen"</li>
+<li>"Dinge beim zweiten Mal richtig machen"</li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/13">
+<h1>
+<strong class="blue">T</strong> Minimum Viable Product</h1>
+
+<ul>
+<li>Im Zweifelsfall: Dinge weglassen</li>
+<li>Schnelle Prototypen
+
+<ul>
+<li>Not-Invented-Here vermeiden</li>
+<li>Fertige Tools nutzen</li>
+</ul>
+</li>
+<li>"Minimal akzeptiertes Feature"
+
+<ul>
+<li>Wann ist ein Ticket umgesetzt?</li>
+</ul>
+</li>
+</ul>
+
+<div class="notes">
+
+<ul>
+<li>Beim Minimum Viable Product geht es darum, so schnell wie möglich rauszufinden, ob unser Produkt / Feature jemanden interessiert</li>
+<li>Dafür muss es gegebenenfalls noch nicht "perfekt aussehen" oder "performant" sein oder alle Sicherheitskriterien erfüllen</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/14">
+<h1>
+<strong class="green">B</strong> "Das neue Suchformular"</h1>
+
+<ul>
+<li><p>Zu implementieren: Suche auf Webseite</p></li>
+<li>
+<p>"Nice-to-have": Suche hat Auto-Complete</p>
+
+<ul>
+<li>Verzögert Auslieferung</li>
+<li>Läuft Gefahr, nicht gewollt zu sein</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/15">
+<h1>
+<strong class="red">P</strong> Ursachen beheben statt Symptome bekämpfen</h1>
+
+<ul>
+<li><p>Gleiche Fehler tauchen immer wieder auf</p></li>
+<li><p>Dinge gehen nur manchmal</p></li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/16">
+<h1>
+<strong class="blue">T</strong> The 5 WHYs</h1>
+
+<ul>
+<li><p>5 Mal "Warum?" fragen</p></li>
+<li>
+<p>"Root Cause Analysis"</p>
+
+<ul>
+<li>Ursache des Problems finden</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/17">
+<h1>
+<strong class="green">B</strong> Kaputtes SSO</h1>
+
+<ul>
+<li>Problem: SSO geht nicht</li>
+<li>1. Warum: SSO Server liefert Schrott</li>
+<li>2. Warum: Paket auf SSO Server fehlt</li>
+<li>3. Warum: Server neu aufgesetzt</li>
+<li>4. Warum: Spezifikation an Ops unklar</li>
+<li>5. Warum: Dev und Ops Komm.-Problem</li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/18">
+<h1>
+<strong class="red">P</strong> Bauchgefühl-entscheidungen</h1>
+
+<ul>
+<li><p>"Ich bin der festen Überzeugung, dass..."</p></li>
+<li><p>"Meiner Meinung nach sollten wir..."</p></li>
+<li><p>"Das liegt vermutlich an..."</p></li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/19">
+<h1>
+<strong class="blue">T</strong> Hypothesen-getriebene Experimente</h1>
+
+<ul>
+<li><p>Experimente bestätigen / wiederlegen These</p></li>
+<li><p>Möglichst falisfizierbare Hypothesen</p></li>
+<li><p>Nutzung von Daten zur Bestätigung / Widerlegung von Hypothesen</p></li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/20">
+<h1>
+<strong class="green">B</strong> Menü macht Seite lahm</h1>
+
+<ul>
+<li>Beobachtung: 3000 DB Requests pro <br>Seitenaufruf für Menü-Rendering</li>
+<li>Hypothese: Macht Seitenaufbau lahm</li>
+<li>Experiment: Neues Caching
+
+<ul>
+<li>Performancetest vorher</li>
+<li>Performancetest nachher</li>
+<li>Tests mit realen Daten durchführen</li>
+</ul>
+</li>
+<li>Ergebnis: 50% Beschleunigung</li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/21">
+<h1>
+<strong class="red">P</strong> Wie messe ich den Erfolg von Maßnahmen</h1>
+
+<ul>
+<li><p>Wie finde ich die richtigen Metriken?</p></li>
+<li><p>Wie interpretiere ich meine Metriken?</p></li>
+<li><p>Wie messe ich Verbesserungen?</p></li>
+<li><p>Welche Metriken helfen bei Entscheidungsfindung?</p></li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/22">
+<h1>
+<strong class="blue">T</strong> Actionable Metrics</h1>
+
+<ul>
+<li><p>Metriken, aus denen sich Entscheidungen ableiten lassen: <strong>Actionable Metrics</strong></p></li>
+<li><p>Metriken, die uns nicht bei Entscheidungsfindung helfen: <strong>Vanity Metrics</strong></p></li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/23">
+<h1>
+<strong class="green">B</strong> Actionable Metrics vs. Vanity Metrics</h1>
+
+<ul>
+<li><p>Konversionsrate vs. Seitenaufrufe</p></li>
+<li><p>Aktivierungen vs. Downloads</p></li>
+<li><p>Durchlaufzeit vs. Story Points</p></li>
+<li><p>Fakturierte Stunden vs. Arbeitszeit</p></li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/24">
+<h1>
+<strong class="green">B</strong> Pirate Metrics AARRR</h1>
+
+<ul class="non-bullet">
+<li>
+<strong class="rounded">A</strong>cquisition – # Besucher</li>
+<li>
+<strong class="rounded">A</strong>ctivation – # glücklicher Besucher</li>
+<li>
+<strong class="rounded">R</strong>etention – # wiederkehrender Besucher</li>
+<li>
+<strong class="rounded">R</strong>evenue – # bezahlender Besucher</li>
+<li>
+<strong class="rounded">R</strong>eferral – # empfehlender Besucher</li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/25">
+<h1>
+<strong class="red">P</strong> Innovation und Lernen transparent machen</h1>
+
+<ul>
+<li><p>Wie kann Innovation und Lernen "dokumentiert" werden?</p></li>
+<li><p>Wie kann ich darüber buchhalten?</p></li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/26">
+<h1>
+<strong class="blue">T</strong> Innovation Radar</h1>
+
+<ul>
+<li>Grafische Darstellung
+
+<ul>
+<li>Phasen der Adaption</li>
+<li>Bewegung visualisieren</li>
+</ul>
+</li>
+<li>WIP Limits vereinbaren</li>
+</ul>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/27">
+<h1>
+<strong class="green">B</strong> Beispiel für Innovation Radar</h1>
+
+<table>
+<tr>
+<td><img src="./file/lean_methods/technology_radar.jpg" height="400px"></td>
+<td><img src="./file/lean_methods/technology_radar_2.jpg" height="400px"></td>
+</tr>
+</table>
+</div>
+</div>
+<div id="lean_methods_lean_methods" class="slide " data-transition="none">
+<div class="content " ref="lean_methods/lean_methods/28">
+<h1>Methoden-Übersicht</h1>
+
+<ul>
+<li>Build-Measure-Learn Loop</li>
+<li>MVP &amp; Small Batches</li>
+<li>5 WHYs</li>
+<li>Hypothesen-getriebene Experimente</li>
+<li>Actionable Metrics</li>
+<li>Innovation Radar</li>
+</ul>
+</div>
+</div>
+<div id="next_steps_next_steps" class="slide " data-transition="none">
+<div class="content " ref="next_steps/next_steps">
+<h1>Und jetzt?</h1>
+
+<h2>Adopt &amp; Apply-Measure-Learn Loop</h2>
+
+<ul>
+<li>
+<p>Methoden ausprobieren (als Team), z.B.</p>
+
+<ul>
+<li>5 WHYs eignen sich für Daily und Retro</li>
+<li>Innovations-Radar einführen</li>
+<li>Metriken überlegen</li>
+</ul>
+</li>
+<li><p>Methoden Evaluieren</p></li>
+<li><p>Methoden anpassen</p></li>
+</ul>
+
+<div class="notes">
+
+<ul>
+<li>Nach der theoretischen Vorstellung ist jetzt die Frage, wie man als Team / Firma mit LEAN Methoden starten kann</li>
+<li>Selbstrekursion: "Build -&gt; Measure -&gt; Learn" Loop wird zu "Adopt &amp; Apply -&gt; Measure -&gt; Leanr" Loop</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div id="resources_resources" class="slide new-chapter center" data-transition="none">
+<div class="content new-chapter center" ref="resources/resources/1">
+<h1>Lesenswertes</h1>
+
+<p><img src="./file/resources/lean_book_book.png" width="450px"></p>
+
+<p><a href="http://theleanstartup.com/book">The Lean Startup - Eric Ries</a></p>
+</div>
+</div>
+<div id="resources_resources" class="slide " data-transition="none">
+<div class="content " ref="resources/resources/2">
+<h1>Lesenswertes</h1>
+
+<p><img src="./file/resources/lean_enterprise.jpg" height="450px"></p>
+
+<p><a href="http://shop.oreilly.com/product/0636920030355.do">Lean Enterprise - Jez Humble</a></p>
+</div>
+</div>
+<div id="resources_resources" class="slide " data-transition="none">
+<div class="content " ref="resources/resources/3">
+<h1>Lesenswertes</h1>
+
+<p><img src="./file/resources/running_lean.png" height="450px"></p>
+
+<p><a href="http://ashmaurya.com">Running Lean - Ash Maurya</a></p>
+</div>
+</div>
+<div id="resources_resources" class="slide " data-transition="none">
+<div class="content " ref="resources/resources/4">
+<h1>Lesenswertes</h1>
+
+<p><img src="./file/resources/lean_bites.jpg" height="450px"></p>
+
+<p><a href="http://leanpub.com/lean-bites">Lean Bites - Matthias Marschall &amp; Dan Ackerson</a></p>
+</div>
+</div>
+
+</div>
+<div id="pauseScreen">
+  Paused
+</div>
+
+</body>
+</html>

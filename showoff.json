@@ -1,0 +1,18 @@
+{
+  "name": "Chef, Vagrant and TYPO3",
+  "description": "",
+  "author": "Michael Lihs",
+  "pause_msg": "Paused",
+  "sections": [
+    {"section":"01_title"},
+    {"section":"02_about_me"},
+    {"section":"03_agenda"},
+    {"section":"04_motivation"},
+    {"section":"05_virtualization_nutshell"},
+    {"section":"06_vagrant_chef"},
+    {"section":"07_typo3"},
+    {"section":"08_go_live"},
+    {"section":"09_tips_and_tricks"},
+    {"section":"10_resources"}
+  ]
+}
