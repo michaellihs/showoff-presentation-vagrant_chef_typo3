@@ -8,6 +8,6 @@ Run `bundle install`.
 
 If you don't have bundler, run `gem install bundler` before.
 
-## Präsentation starten
+## Start the Presentation
 
 Start Showoff with `showoff server` in the root directory. Afterwards open [http://localhost:9090](http://localhost:9090) in your browser.
